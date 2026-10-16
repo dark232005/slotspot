@@ -18,11 +18,6 @@ interface LandingPageProps {
 export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col justify-between selection:bg-brand-500 selection:text-white">
-      {/* Top Banner */}
-      <div className="bg-navy-900 text-white text-xs py-2 px-4 text-center font-medium">
-        🎓 B.Tech CSE Cloud Architecture Course Project • Zero-Cost Execution Model
-      </div>
-
       {/* Hero Section */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-20 flex-1 flex flex-col justify-center">
         <div className="text-center max-w-3xl mx-auto">
@@ -49,7 +44,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
               onClick={onGetStarted}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-base shadow-md hover:shadow-lg transition-all"
             >
-              <span>Launch Demo Application</span>
+              <span>Launch Application</span>
               <ArrowRight className="w-5 h-5" />
             </button>
           </div>
