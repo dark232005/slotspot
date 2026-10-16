@@ -19,7 +19,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const refreshUser = async () => {
     try {
-      const profile = await api.getMe();
+      const timeoutPromise = new Promise<never>((_, reject) =>
+        setTimeout(() => reject(new Error('Auth check timeout')), 4000)
+      );
+      const profile = await Promise.race([api.getMe(), timeoutPromise]);
       setUser(profile);
     } catch {
       setUser(null);
@@ -30,10 +33,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   useEffect(() => {
-    const token = localStorage.getItem('slotspot_token');
-    if (token) {
-      refreshUser();
-    } else {
+    try {
+      const token = localStorage.getItem('slotspot_token');
+      if (token) {
+        refreshUser();
+      } else {
+        setIsLoading(false);
+      }
+    } catch {
       setIsLoading(false);
     }
   }, []);

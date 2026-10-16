@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { NotificationProvider } from './context/NotificationContext';
 import { Navbar } from './components/Navbar';
+import { ErrorBoundary } from './components/ErrorBoundary';
 
 // Pages
 import { LandingPage } from './pages/LandingPage';
@@ -117,10 +118,12 @@ const MainAppContent: React.FC = () => {
 
 export default function App() {
   return (
-    <AuthProvider>
-      <NotificationProvider>
-        <MainAppContent />
-      </NotificationProvider>
-    </AuthProvider>
+    <ErrorBoundary>
+      <AuthProvider>
+        <NotificationProvider>
+          <MainAppContent />
+        </NotificationProvider>
+      </AuthProvider>
+    </ErrorBoundary>
   );
 }

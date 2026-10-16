@@ -15,19 +15,38 @@ import {
   ManagerAssignment,
 } from '../types';
 
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1';
+const getApiBase = (): string => {
+  if (import.meta.env.VITE_API_URL) {
+    return import.meta.env.VITE_API_URL;
+  }
+  if (
+    typeof window !== 'undefined' &&
+    (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+  ) {
+    return 'http://localhost:8000/api/v1';
+  }
+  return 'https://slotspot-api.onrender.com/api/v1';
+};
+
+const API_BASE = getApiBase();
 
 class ApiService {
   private getToken(): string | null {
-    return localStorage.getItem('slotspot_token');
+    try {
+      return localStorage.getItem('slotspot_token');
+    } catch {
+      return null;
+    }
   }
 
   public setToken(token: string | null) {
-    if (token) {
-      localStorage.setItem('slotspot_token', token);
-    } else {
-      localStorage.removeItem('slotspot_token');
-    }
+    try {
+      if (token) {
+        localStorage.setItem('slotspot_token', token);
+      } else {
+        localStorage.removeItem('slotspot_token');
+      }
+    } catch {}
   }
 
   private async request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
@@ -43,10 +62,25 @@ class ApiService {
       headers['Authorization'] = `Bearer ${token}`;
     }
 
-    const response = await fetch(url, {
-      ...options,
-      headers,
-    });
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 15000);
+
+    let response: Response;
+    try {
+      response = await fetch(url, {
+        ...options,
+        headers,
+        signal: controller.signal,
+      });
+    } catch (err: any) {
+      clearTimeout(timeoutId);
+      if (err.name === 'AbortError') {
+        throw new Error('Connection timed out. The backend service may be waking up from standby (Render free tier). Please retry in 30 seconds.');
+      }
+      throw new Error(err.message || 'Network error communicating with SlotSpot API');
+    } finally {
+      clearTimeout(timeoutId);
+    }
 
     if (!response.ok) {
       let errorMessage = `Request failed with status ${response.status}`;
