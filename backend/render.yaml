@@ -1,0 +1,34 @@
+services:
+  # SlotSpot FastAPI Backend Web Service
+  - type: web
+    name: slotspot-api
+    env: python
+    region: oregon
+    plan: free
+    rootDir: backend
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python -m app.seed && uvicorn app.main:app --host 0.0.0.0 --port $PORT"
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.11
+      - key: DATABASE_URL
+        fromDatabase:
+          name: slotspot-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: 1440
+      - key: DEFAULT_NO_SHOW_GRACE_MINUTES
+        value: 10
+      - key: CORS_ORIGINS
+        value: "*"
+
+databases:
+  # Free tier PostgreSQL instance on Render
+  - name: slotspot-db
+    region: oregon
+    plan: free
+    databaseName: slotspot
+    user: slotspot_admin
