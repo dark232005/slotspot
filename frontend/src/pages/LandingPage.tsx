@@ -126,8 +126,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
       </div>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500">
-        SlotSpot — Campus Resource Booking SaaS • Built with FastAPI, React, TypeScript, and PostgreSQL
+      <footer className="bg-white border-t border-slate-200 py-6 px-4 text-center text-xs text-slate-500">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+          <span>SlotSpot — Campus Resource Booking SaaS • Built with FastAPI, React, TypeScript, and PostgreSQL</span>
+          <span className="font-medium text-slate-600">Created and Developed by <strong className="text-brand-600 font-semibold">Shaurya Raghuvanshi</strong></span>
+        </div>
       </footer>
     </div>
   );

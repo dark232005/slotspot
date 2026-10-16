@@ -107,8 +107,9 @@ const MainAppContent: React.FC = () => {
         )}
       </main>
 
-      <footer className="bg-white border-t border-slate-200/80 py-4 px-6 text-center text-xs text-slate-400">
-        SlotSpot Campus Resource Booking SaaS • Built with zero-cost open source architecture
+      <footer className="bg-white border-t border-slate-200/80 py-4 px-6 text-center text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-2 max-w-7xl mx-auto w-full">
+        <span>SlotSpot Campus Resource Booking SaaS • Built with zero-cost open source architecture</span>
+        <span className="font-medium text-slate-600">Created and Developed by <strong className="text-brand-600 font-semibold">Shaurya Raghuvanshi</strong></span>
       </footer>
     </div>
   );

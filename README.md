@@ -287,3 +287,9 @@ If presenting the project online without spending money, use only genuinely free
 - **Backend & Database:** [Render Free Web Service](https://render.com) (spins down after 15m of inactivity) or [Fly.io](https://fly.io).
 - **Frontend:** [Vercel](https://vercel.com) or [Netlify](https://netlify.com) connected to the Vite frontend repository.
 - **Important Note:** Free tiers sleep when inactive and may clear ephemeral SQLite databases on restart. The locally runnable application is the guaranteed, permanent baseline.
+
+---
+
+### Author & Attribution
+**Created and Developed by:** **Shaurya Raghuvanshi**  
+*SlotSpot — Zero-Cost Cloud Architecture & Campus Resource Booking SaaS*

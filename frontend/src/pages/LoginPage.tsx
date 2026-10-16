@@ -221,6 +221,10 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onBackToLanding }) => {
               </button>
             </div>
           )}
+
+          <div className="mt-6 text-center text-xs text-slate-500">
+            Created and Developed by <strong className="text-brand-600 font-semibold">Shaurya Raghuvanshi</strong>
+          </div>
         </div>
       </div>
     </div>

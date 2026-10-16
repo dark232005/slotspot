@@ -2,6 +2,7 @@
 ## Comprehensive Project Review & Academic Evaluation Report
 
 **Course:** B.Tech Computer Science and Engineering — Cloud Architecture  
+**Created & Developed By:** **Shaurya Raghuvanshi**  
 **System Status:** **100% Live in Production & 100% Locally Runnable**  
 **Production Frontend URL:** [https://slotspot-eta.vercel.app/](https://slotspot-eta.vercel.app/)  
 **Production API & Interactive Swagger Docs:** [https://slotspot-api.onrender.com/docs](https://slotspot-api.onrender.com/docs)  
@@ -218,4 +219,5 @@ Evaluators can test the live system directly at **[https://slotspot-eta.vercel.a
 - **GitHub Repository:** [https://github.com/dark232005/slotspot](https://github.com/dark232005/slotspot)
 - **Local Project Path:** `C:\Users\welco\.gemini\antigravity\scratch\slotspot`
 
-*SlotSpot stands as a complete, fully tested, zero-cost, production-deployed cloud software engineering capstone ready for faculty presentation.*
+---
+*Created and Developed by **Shaurya Raghuvanshi** • SlotSpot Cloud Architecture Capstone*
